@@ -24,7 +24,14 @@ namespace SpongebobMockingText
 
         //splits the string into two with alternting chars. E.g. s = 123456 -> s1 = 135 ; s2 = 246
         internal static void splitString(string input, char [] even, char[] odd){ 
-            throw new NotImplementedException();
+            //because we need two return values and arrays are passed by reference Im doing unholy things and nut using the return of the function
+            char[] charInput = input.ToCharArray();
+            byte j = 0;
+            for (int i = 0; i<input.Length; i +=2){
+                        even[j] = charInput[i];
+                        odd[j] = charInput[i+1];
+                        j++;
+            }
         }
 
         internal static void toUpperCase(char [] arr){
