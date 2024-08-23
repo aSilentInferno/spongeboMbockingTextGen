@@ -48,12 +48,12 @@ namespace SpongebobMockingText
             for (int i = 0; i < maxLength; i++)
             {
                 // Append from even array if within bounds
-                if (i < even.Length)
+                if (i < even.Length && even[i] != '\0')
                 {
                     returnString.Append(even[i]);
                 }
                 // Append from odd array if within bounds
-                if (i < odd.Length)
+                if (i < odd.Length && odd[i] != '\0')
                 {
                     returnString.Append(odd[i]);
                 }
