@@ -9,7 +9,7 @@ namespace SpongeBobMockingTextGen.Test
         {
             // Arrange
             string input = "hello world";
-            string expected = "hElLo wOrLd";
+            string expected = "hElLo WoRlD";
 
             // Act
             string result = Program.ConvertToMockingText(input);
@@ -78,7 +78,48 @@ namespace SpongeBobMockingTextGen.Test
         {
             // Arrange
             string input = "HeLLo WoRLd";
-            string expected = "hElLo wOrLd";
+            string expected = "hElLo WoRlD";
+
+            // Act
+            string result = Program.ConvertToMockingText(input);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ConvertToMockingText_NoLetters()
+        {
+            // Arrange
+            string input = "4554 (§/$%)";
+            string expected = input;
+
+            // Act
+            string result = Program.ConvertToMockingText(input);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void ConvertToMockingText_EscapeChars()
+        {
+            // Arrange
+            string input = @"Hello \ World";
+            string expected = @"hElLo \ WoRlD";
+
+            // Act
+            string result = Program.ConvertToMockingText(input);
+
+            // Assert
+            Assert.Equal(expected, result);
+        }
+        [Fact]
+        public void ConvertToMockingText_Quote()
+        {
+            // Arrange
+            string input = "Hello \"world\"";
+            string expected = "hElLo \"WoRlD\"";
 
             // Act
             string result = Program.ConvertToMockingText(input);
