@@ -1,64 +1,93 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Text;
 
-namespace SpongebobMockingText
+namespace SpongebobMockingTextGen
 {
     internal static class Program
     {
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
-            //get input
-            string input = getLowerCaseInput();
-            Char[] even = new char[(input.Length/2) + 1];
-            Char[] odd = new char[(input.Length/2) + 1];
-            splitString(input, even, odd);
-            toUpperCase(even);
-            string result = Join(even, odd);
+           if (args.Contains("-f"))
+           {
+             FileTextConversion();
+           } else
+           {
+            CmdTextConversion();
+           }
+        }
+
+        private static void CmdTextConversion()
+        {
+            Console.WriteLine("Please enter the text:");
+            string? input = Console.ReadLine();
+            string? result = ConvertToMockingText(input);
             Console.WriteLine(result);
         }
 
-        internal static string getLowerCaseInput()
-        {
-            Console.WriteLine("please enter the text");
-            return Console.ReadLine().ToLower();
-        }
-
-        //splits the string into two with alternting chars. E.g. s = 123456 -> s1 = 135 ; s2 = 246
-        internal static void splitString(string input, char [] even, char[] odd){ 
-            //because we need two return values and arrays are passed by reference Im doing unholy things and nut using the return of the function
-            char[] charInput = input.ToCharArray();
-            byte j = 0;
-            for (int i = 0; i<input.Length; i +=2){
-                        even[j] = charInput[i];
-                        odd[j] = charInput[i+1];
-                        j++;
-            }
-        }
-
-        internal static void toUpperCase(char [] arr){
-            for(int i = 0; i < arr.Length; i++){
-                arr[i] = char.ToUpper(arr[i]);
-            }
-        }
-
-        internal static String Join(char[] even, char[] odd)
-        {
-            StringBuilder returnString = new StringBuilder();
-            // Calculate the maximum length to ensure both arrays are fully processed
-            int maxLength = Math.Max(even.Length, odd.Length);
-            for (int i = 0; i < maxLength; i++)
+        private static void FileTextConversion()
+        {   
+            Console.WriteLine("please enter the path");
+            string? path = Console.ReadLine();
+            Console.WriteLine("reading text...");
+            string? input = "";
+            try
             {
-                // Append from even array if within bounds
-                if (i < even.Length && even[i] != '\0')
+                #pragma warning disable CS8604 // Possible null reference argument.
+                StreamReader reader = new(path);
+                #pragma warning restore CS8604 // Possible null reference argument.
+                input = reader.ReadToEnd();
+                reader.Close();
+                
+            }
+            catch (Exception e)
+            {
+                HandleExeption(e);
+                return;
+            }
+
+            string? result = ConvertToMockingText(input);
+            Console.WriteLine(result);
+        }
+
+        private static void HandleExeption(Exception e)
+        {
+            switch (e)
+            {
+                case FileNotFoundException:
+                    Console.WriteLine("the file was not found");
+                    break;
+                case OutOfMemoryException:
+                    Console.WriteLine("Ran out of memory");
+                    break;
+                case IOException:
+                    Console.WriteLine(e);
+                    break;
+            }
+        }
+
+        internal static string? ConvertToMockingText(string? input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            StringBuilder result = new StringBuilder(input.Length);
+            bool makeUpperCase = false;
+
+            foreach (char c in input)
+            {
+                if (char.IsLetter(c))
                 {
-                    returnString.Append(even[i]);
+                    result.Append(makeUpperCase ? char.ToUpper(c) : char.ToLower(c));
+                    makeUpperCase = !makeUpperCase;
                 }
-                // Append from odd array if within bounds
-                if (i < odd.Length && odd[i] != '\0')
+                else
                 {
-                    returnString.Append(odd[i]);
+                    result.Append(c);
                 }
             }
-            return returnString.ToString();
+
+            return result.ToString();
         }
     }
 }
