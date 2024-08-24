@@ -7,12 +7,12 @@ namespace SpongebobMockingTextGen
         public static void Main(string[] args)
         {
             Console.WriteLine("Please enter the text:");
-            string input = Console.ReadLine();
-            string result = ConvertToMockingText(input);
+            string? input = Console.ReadLine();
+            string? result = ConvertToMockingText(input);
             Console.WriteLine(result);
         }
 
-        internal static string ConvertToMockingText(string input)
+        internal static string? ConvertToMockingText(string? input)
         {
             if (string.IsNullOrEmpty(input)) return input;
 
