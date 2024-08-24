@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SpongebobMockingText
+namespace SpongebobMockingTextGen
 {
     internal static class Program
     {
