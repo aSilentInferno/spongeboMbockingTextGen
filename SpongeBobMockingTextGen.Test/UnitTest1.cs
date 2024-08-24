@@ -12,7 +12,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "hElLo WoRlD";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -26,7 +26,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "123 hElLo!";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -40,7 +40,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -53,7 +53,7 @@ namespace SpongeBobMockingTextGen.Test
             string? input = null;
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Null(result);
@@ -67,7 +67,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "a";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -81,7 +81,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "hElLo WoRlD";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -95,7 +95,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = input;
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -109,7 +109,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = @"hElLo \ WoRlD";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
@@ -122,7 +122,7 @@ namespace SpongeBobMockingTextGen.Test
             string expected = "hElLo \"WoRlD\"";
 
             // Act
-            string result = Program.ConvertToMockingText(input);
+            string? result = Program.ConvertToMockingText(input);
 
             // Assert
             Assert.Equal(expected, result);
