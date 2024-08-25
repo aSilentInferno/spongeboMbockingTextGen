@@ -42,6 +42,7 @@ please note that there is also no way of using the -f argument if you decide to 
 If you want to be able to execute the program from everywhere you can modify the PATH variable to include this program  
 ### Important: Modifying the PATH variable is a standard process but should be done with care. Follow the steps below closely to ensure that your system continues to run smoothly. If you're unfamiliar with this process, consider following a detailed guide or consulting a knowledgeable resource.
 1. place the file in another directory in `c:/` for example in `C:\Program Files\ProgramspongeSpongeBobMockingTextGen`
+   + it is recommend to rename the file to something short and memorable as the name of the file is what you will have to type to run the program 
 2. modify the PATH variable. If you don't know what this/how this works you should probably not do it ~~(aka google it, I'm too lazy to explain)~~
 3. In the System variables section, find the Path variable and click Edit.
 4. Click New and add the path to the directory where you placed your executable (e.g., `C:\Program Files\ProgramspongeSpongeBobMockingTextGen`).
@@ -49,6 +50,8 @@ If you want to be able to execute the program from everywhere you can modify the
 Check if the modification was successfully
 + Check if the modification was successful by opening the cmd and typing `echo %PATH%`
 + If you see the path to the folder in which the exe recorded it worked
+
+congrats, you can now run the program from any directory if you simply type the name of the file in the cmd
 
 <!-- TOC --><a name="constraintsedge-case-behavior"></a>
 ## Constraints/edge-case behavior
